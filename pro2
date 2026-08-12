@@ -1,0 +1,24 @@
+import pandas as pd
+# Create a sample JSON dataset
+students_json = [
+{"StudentID": 101, "Name": "Arun", "Age": 20, "Department": "CSE", "CGPA": 8.5},
+{"StudentID": 102, "Name": "Priya", "Age": 21, "Department": "AI&DS", "CGPA": 9.1},
+{"StudentID": 103, "Name": "Ravi", "Age": 20, "Department": "IT", "CGPA": 8.0},
+
+{"StudentID": 104, "Name": "Meena", "Age": 22, "Department": "CSE", "CGPA": 8.8},
+{"StudentID": 105, "Name": "Karthik", "Age": 21, "Department": "ECE", "CGPA": 7.9}
+]
+# Convert JSON data into DataFrame
+df = pd.DataFrame(students_json)
+# Display first five records
+print("First 5 Rows:")
+print(df.head())
+# Dataset information
+print("\nDataset Information:")
+df.info()
+# Dataset dimensions
+print("\nDataset Shape:")
+print(df.shape)
+# Statistical summary
+print("\nStatistical Summary:")
+print(df.describe())
