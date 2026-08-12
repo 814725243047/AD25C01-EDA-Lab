@@ -1,0 +1,12 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data = {
+"Department": ["HR", "IT", "Finance", "IT", "HR", "Finance", "IT"],
+"Salary": [30000, 60000, 45000, 75000, 35000, 85000, 70000]
+}
+df = pd.DataFrame(data)
+plt.bar(df["Department"], df["Salary"], color="skyblue")
+plt.title("Salary by Department")
+plt.xlabel("Department")
+plt.ylabel("Salary")
+plt.show()
