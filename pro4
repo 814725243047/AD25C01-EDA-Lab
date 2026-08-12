@@ -1,0 +1,61 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create Dataset
+data = {
+"Employee": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+"Department": ["HR", "IT", "Finance", "IT", "HR", "Finance", "IT", "HR", "Finance", "IT"],
+"Age": [25, 30, 28, 35, 26, 40, 32, 29, 45, 38],
+"Salary": [30000, 60000, 45000, 75000, 35000, 85000, 70000, 38000, 90000, 80000],
+"Experience": [1, 5, 3, 8, 2, 12, 6, 3, 15, 10]
+}
+
+df = pd.DataFrame(data)
+
+# Style
+sns.set(style="whitegrid")
+
+# -------------------------------
+# Visualization 1: Employee Count by Department
+# -------------------------------
+plt.figure(figsize=(6,4))
+sns.countplot(x="Department", data=df, palette="Set2")
+plt.title("Employee Count by Department")
+plt.show()
+
+# -------------------------------
+
+# Visualization 2: Average Salary by Department
+# -------------------------------
+plt.figure(figsize=(6,4))
+sns.barplot(x="Department", y="Salary", data=df, estimator="mean", palette="viridis")
+plt.title("Average Salary by Department")
+plt.show()
+
+# -------------------------------
+# Visualization 3: Salary vs Experience
+# -------------------------------
+plt.figure(figsize=(6,4))
+sns.scatterplot(x="Experience", y="Salary", hue="Department", data=df, s=100)
+plt.title("Salary vs Experience")
+plt.show()
+
+# -------------------------------
+# Visualization 4: Salary Distribution
+# -------------------------------
+plt.figure(figsize=(6,4))
+sns.histplot(df["Salary"], bins=5, color="orange", kde=True)
+plt.title("Salary Distribution")
+plt.show()
+
+# -------------------------------
+# Visualization 5: Correlation Heatmap
+# -------------------------------
+plt.figure(figsize=(6,4))
+sns.heatmap(df[["Age", "Salary", "Experience"]].corr(),
+annot=True,
+
+cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
