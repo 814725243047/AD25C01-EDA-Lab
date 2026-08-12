@@ -1,0 +1,16 @@
+import pandas as pd
+data ={"student ID":[101,102,103,104,105],
+       "Name":["arun","priya","ravi","Meena","karthik"],
+       "Age":[20,18,19,21,22],
+       "Department":["CSE","AI&DS","MECH","IT","ECE"],
+       "CGPA":[8.5,9.1,8.0,8.8,7.9]
+      }
+df=pd.DataFrame(data)
+print("First 5 Rows")
+print(df.head())
+print("\nDataset information")
+print(df.info())
+print("\shape of datset")
+print(df.shape)
+print("\nStatistical Summary")
+print(df.describe())
