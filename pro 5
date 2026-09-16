@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+
+data = {
+    "Name": ["Jhon", "Mary", "Jhon", "David", "Rose", None],
+    "Age": [25, np.nan, 25, 35, 40, 30],
+    "Salary": [50000, 60000, 50000, np.nan, 75000, 65000],
+    "Department": ["HR", "IT", "HR", None, "Finance", "IT"]
+}
+
+df = pd.DataFrame(data)
+
+print("Original Dataset")
+print(df)
+
+print("\nMissing Value")
+print(df.isnull().sum())
+
+# Fill missing values
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+df["Salary"] = df["Salary"].fillna(df["Salary"].mean())
+df["Department"] = df["Department"].fillna(df["Department"].mode()[0])
+df["Name"] = df["Name"].fillna(df["Name"].mode()[0])
+
+# Remove duplicate rows
+df = df.drop_duplicates()
+
+print("\nCleaned Dataset")
+print(df)
+
+print("\nDataset Information")
+df.info()
