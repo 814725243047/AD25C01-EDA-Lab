@@ -1,0 +1,36 @@
+import pandas as pd
+
+data = {
+    "A": ["21", "25", "32", "40", "50", "55", "60", "65", "70", "75"],
+    "B": ["35000", "42000", "47000", "52000", "600000",
+          "67000", "72000", "800000", "90000", "100000"]
+}
+
+df = pd.DataFrame(data)
+
+print("Original Dataset")
+print(df)
+
+# Rename columns
+df.rename(columns={"A": "Age", "B": "Income"}, inplace=True)
+
+# Convert data types
+df["Age"] = df["Age"].astype(float)
+df["Income"] = df["Income"].astype(float)
+
+# Create age groups
+df["Age_Group"] = pd.cut(
+    df["Age"],
+    bins=3,
+    labels=["Young", "Middle", "Senior"]
+)
+
+# Create income levels
+df["Income_Level"] = pd.qcut(
+    df["Income"],
+    q=3,
+    labels=["Low", "Middle", "High"]
+)
+
+print("\nUpdated Dataset")
+print(df)
