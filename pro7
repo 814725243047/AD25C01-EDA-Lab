@@ -1,0 +1,65 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample data
+dates = pd.date_range('2024-01-01', periods=90)
+sales = np.random.randint(100, 500, size=90)
+
+df = pd.DataFrame({
+    'Date': dates,
+    'Sales': sales
+})
+
+# Set Date as index
+df.set_index('Date', inplace=True)
+
+# Rolling Mean
+df['Rolling_Mean'] = df['Sales'].rolling(window=7).mean()
+
+# Rolling Standard Deviation
+df['Rolling_STD'] = df['Sales'].rolling(window=7).std()
+
+# Display first 15 rows
+print(df.head(15))
+
+# Plot Original Sales and Rolling Mean
+plt.figure(figsize=(12, 6))
+
+plt.plot(
+    df.index,
+    df['Sales'],
+    label='Original Sales'
+)
+
+plt.plot(
+    df.index,
+    df['Rolling_Mean'],
+    linewidth=3,
+    label='7-Day Rolling Mean'
+)
+
+plt.title("Rolling Mean")
+plt.xlabel("Date")
+plt.ylabel("Sales")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Plot Rolling Standard Deviation
+plt.figure(figsize=(12, 5))
+
+plt.plot(
+    df.index,
+    df['Rolling_STD'],
+    color='red',
+    label='7-Day Rolling Standard Deviation'
+)
+
+plt.title("Rolling Standard Deviation")
+plt.xlabel("Date")
+plt.ylabel("Standard Deviation")
+plt.legend()
+plt.grid(True)
+plt.show()
